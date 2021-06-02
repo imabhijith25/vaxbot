@@ -33,8 +33,10 @@ def index():
     new_data = User("hi","sdsd")
     db.session.add(new_data)
     db.session.commit()
+    data  = User.query.all()
 
-    return "joii"
+
+    return data
 
 @app.route("/{}".format(key),methods=["POST"])
 def respond():
