@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywmzusodcisdgk:12ca1d19a02dd0a0940c7898144c3e9cb28899eee781abc986fb295df63b9b25@ec2-54-145-102-149.compute-1.amazonaws.com:5432/demk8qj5l6ai5i'
 bot = telegram.Bot(token=key)
 db = SQLAlchemy(app)
-db = SQLAlchemy(app)
+
 
 class User(db.Model):
 	# Defines the Table Name user
@@ -33,7 +33,7 @@ def index():
     new_data = User("hi","sdsd")
     db.session.add(new_data)
     db.session.commit()
-    
+
     return "joii"
 
 @app.route("/{}".format(key),methods=["POST"])
