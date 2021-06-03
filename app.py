@@ -143,7 +143,7 @@ def respond():
             date = li[1]
             resp = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={date}".format(pincode=pincode,date=date))
             jsonified = resp.json()
-            print(resp.status_code
+            print(resp.status_code)
             for i in jsonified["sessions"]:
                 hos_name = i["name"]
                 hos_address = i["address"]
