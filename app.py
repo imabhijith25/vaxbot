@@ -180,7 +180,7 @@ def respond():
 
 @app.route("/setwebhook/",methods=["GET","POST"])
 def setwebhook():
-    url = "https://f9bf20fdfb7e.ngrok.io/"
+    url = "https://vaxbotapp.herokuapp.com/"
     s = bot.setWebhook("{url}{key}".format(url=url,key=key))
   
     if s:
