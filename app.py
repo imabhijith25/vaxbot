@@ -113,6 +113,7 @@ def respond():
             if(distid_d is not None):
                 resp1 = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id={distid}&date={date}".format(distid=distid_d,date=session["info"]["text"]))
                 j1 = resp1.json()
+                print(resp1.status_code)
                 if(j1 is not None):
                     for j in j1["sessions"]:
                         h1_name = j["name"]
