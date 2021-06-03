@@ -124,13 +124,15 @@ def respond():
                         total1 = j["available_capacity"]
                         det1 =   "{hos_name} \n{hos_adr} \nDose one Available:{hos_cap1} \nDose two Available:{hos_cap2}\nTotal Dose:{total1}".format(hos_name=h1_name,hos_adr = h1_addr,hos_cap1=h1_cap1, hos_cap2 = h1_cap2,total1=total1)
                         bot.sendMessage(chat_id=session["info"]["chat_id"],text=det1)
-                    
-                    continuetext1 = "would you like to coninue"
-                    custom_keyboard1 = [['Yes'],['No']]
-                    reply_markup1 = telegram.ReplyKeyboardMarkup(custom_keyboard1,one_time_keyboard=True)
-                    zss = bot.sendMessage(chat_id=session["info"]["chat_id"],text=continuetext1,reply_to_message_id=session["info"]["msg_id"],reply_markup=reply_markup1)
-                    if zss:
-                        db.setstate(session["info"]["chat_id"],"continue")
+                else:
+                    bot.sendMessage(chat_id=session["info"]["chat_id"],text="Cannot get data")
+
+                continuetext1 = "would you like to coninue"
+                custom_keyboard1 = [['Yes'],['No']]
+                reply_markup1 = telegram.ReplyKeyboardMarkup(custom_keyboard1,one_time_keyboard=True)
+                zss = bot.sendMessage(chat_id=session["info"]["chat_id"],text=continuetext1,reply_to_message_id=session["info"]["msg_id"],reply_markup=reply_markup1)
+                if zss:
+                    db.setstate(session["info"]["chat_id"],"continue")
 
         
 
@@ -142,18 +144,25 @@ def respond():
             print(li)
             pincode = li[0]
             date = li[1]
-            resp = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={date}".format(pincode=pincode,date=date),headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'})
-            jsonified = resp.json()
+            urli = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode={pincode}&date={date}".format(pincode=pincode,date=date)
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+            resp = requests.get(urli,headers =headers)
+            
             print(resp.status_code)
-            for i in jsonified["sessions"]:
-                hos_name = i["name"]
-                hos_address = i["address"]
-                hos_cap1 = i['available_capacity_dose1']
-                hos_cap2 = i['available_capacity_dose2']
-                total = i['available_capacity']
-                details = "{hos_name} \n{hos_adr} \nDose one Available:{hos_cap1} \nDose two Available:{hos_cap2}\n Total Doses: {total}".format(hos_name=hos_name,hos_adr = hos_address,hos_cap1=hos_cap1, hos_cap2 = hos_cap2,total=total)
-                bot.sendMessage(chat_id=session["info"]["chat_id"],text=details)
+            if(resp.status_code == 200):
+                jsonified  = resp.json()
+                for i in jsonified["sessions"]:
+                    hos_name = i["name"]
+                    hos_address = i["address"]
+                    hos_cap1 = i['available_capacity_dose1']
+                    hos_cap2 = i['available_capacity_dose2']
+                    total = i['available_capacity']
+                    details = "{hos_name} \n{hos_adr} \nDose one Available:{hos_cap1} \nDose two Available:{hos_cap2}\n Total Doses: {total}".format(hos_name=hos_name,hos_adr = hos_address,hos_cap1=hos_cap1, hos_cap2 = hos_cap2,total=total)
+                    bot.sendMessage(chat_id=session["info"]["chat_id"],text=details)
+            else:
+                bot.sendMessage(chat_id=session["info"]["chat_id"],text="Cannot ger data")
 
+            
             continuetext2 = "would you like to coninue"
             custom_keyboard2 = [['Yes'],['No']]
             reply_markup2 = telegram.ReplyKeyboardMarkup(custom_keyboard2,one_time_keyboard=True)
