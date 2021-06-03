@@ -112,7 +112,7 @@ def respond():
             distid_d = db.getdistid(session["info"]["chat_id"])
             if(distid_d is not None):
                 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-                resp1 = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id={distid}&date={date}".format(distid=distid_d,date=session["info"]["text"]),headers=headers)
+                resp1 = requests.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id={distid}&date={date}".format(distid=distid_d,date=session["info"]["text"]))
                 j1 = resp1.json()
                 print(resp1.status_code)
                 if(j1 is not None):
