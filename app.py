@@ -29,7 +29,7 @@ def index():
 def respond():
     try:
         update = telegram.Update.de_json(request.get_json(force=True), bot)
-        if(update is not None and(update.message is not None ) ):
+        if(update is not None  ):
             session["info"] = {
 
                 "username" : update.message.chat.first_name,
