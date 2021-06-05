@@ -1,6 +1,6 @@
 from flask_pymongo import pymongo
 import requests
-connectionurl = "mongodb+srv://test:test@cluster0.9xteb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+connectionurl = ""
 client  = pymongo.MongoClient(connectionurl)
 db = client.get_database('botbase')
 
@@ -94,16 +94,3 @@ def getdistrict(ids,dname):
     
 
 
-# o = getdistrict("17","Kollam")
-# print(o)
-# print(o)
-
-# statess=[{'state_id': 1, 'state_name': 'andaman and nicobar islands'}, {'state_id': 2, 'state_name': 'andhra pradesh'}, {'state_id': 3, 'state_name': 'arunachal pradesh'}, {'state_id': 4, 'state_name': 'assam'}, {'state_id': 5, 'state_name': 'bihar'}, {'state_id': 6, 'state_name': 'chandigarh'}, {'state_id': 7, 'state_name': 'chhattisgarh'}, {'state_id': 8, 'state_name': 'dadra and nagar haveli'}, {'state_id': 37, 'state_name': 'daman and diu'}, {'state_id': 9, 'state_name': 'delhi'}, {'state_id': 10, 'state_name': 'goa'}, {'state_id': 11, 'state_name': 'gujarat'}, {'state_id': 12, 'state_name': 'haryana'}, {'state_id': 13, 'state_name': 'himachal pradesh'}, {'state_id': 14, 'state_name': 'jammu and kashmir'}, {'state_id': 15, 'state_name': 'jharkhand'}, {'state_id': 16, 'state_name': 'karnataka'}, {'state_id': 17, 'state_name': 'kerala'}, {'state_id': 18, 'state_name': 'ladakh'}, {'state_id': 19, 'state_name': 'lakshadweep'}, {'state_id': 20, 'state_name': 'madhya pradesh'}, {'state_id': 21, 'state_name': 'maharashtra'}, {'state_id': 22, 'state_name': 'manipur'}, {'state_id': 23, 'state_name': 'meghalaya'}, {'state_id': 24, 'state_name': 'mizoram'}, {'state_id': 25, 'state_name': 'nagaland'}, {'state_id': 26, 'state_name': 'odisha'}, {'state_id': 27, 'state_name': 'puducherry'}, {'state_id': 28, 'state_name': 'punjab'}, {'state_id': 29, 'state_name': 'rajasthan'}, {'state_id': 30, 'state_name': 'sikkim'}, {'state_id': 31, 'state_name': 'tamil nadu'}, {'state_id': 32, 'state_name': 'telangana'}, {'state_id': 33, 'state_name': 'tripura'}, {'state_id': 34, 'state_name': 'uttar pradesh'}, {'state_id': 35, 'state_name': 'uttarakhand'}, {'state_id': 36, 'state_name': 'west bengal'}]
-
-# # for i in statess:
-# #     print(i)
-
-# def gomap():
-#     for i in statess:
-#         st.insert_one(i)
-# gomap()
