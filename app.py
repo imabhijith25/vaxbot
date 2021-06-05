@@ -7,8 +7,8 @@ import requests
 
 
 app = Flask(__name__)
-app.secret_key = "23nsdufsdsdsd"
-key  = "1816007527:AAFrqEKhchPrExI2Ls1TI2GZZKUwJqBItkA"
+app.secret_key = ""
+key  = ""
 
 bot = telegram.Bot(token=key)
 
