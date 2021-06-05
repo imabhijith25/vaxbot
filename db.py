@@ -75,7 +75,12 @@ def findstateid(text):
 
 
 def getdistrict(ids,dname):
-    headers = {"Accept-Language": "hi_IN", 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+    headers = {    'Accept':'text/html,application/xhtml+xml,application/xml',
+                                'Accept-Encoding':'gzip, deflate',
+                                'Accept-Charset':'ISO-8859-1',
+                                'Origin':'https://www.cowin.gov.in',
+                                'referer':'https://www.cowin.gov.in/',
+                                'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36',}
     resp = requests.get("https://cdn-api.co-vin.in/api/v2/admin/location/districts/{ids}".format(ids=ids),headers=headers)
     print(resp.status_code)
     diction = resp.json()
